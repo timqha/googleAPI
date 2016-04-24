@@ -6,9 +6,7 @@ var config = require('./config.js');
 var configGoogleAPI = require('./config-google-api.js');
 var request = require('google-oauth-jwt').requestWithJWT();
 
-// Your query in Google
-var myQuery = 'MYSQL cache TABLE';
-
+var exports = module.exports = {};
 var connection = mysql.createConnection({
     host: config.host,
     user: config.username,
@@ -24,11 +22,12 @@ connection.connect(function(err) {
 // check in the database query,
 // if you have an outstanding response from the database,
 // otherwise, we use the Google api
-var getFirstResultGoogleAPI = function(yourQuery, callback){
+exports.getFirstResultGoogleAPI = function(yourQuery, callback){
     connection.query('SELECT SQL_CACHE * FROM google_api WHERE query=? LIMIT 1', [yourQuery], function(err, result) {
         if(err) throw err;
         if(result.length){
-            callback(result[0].first_result_url);
+            var object = {link: result[0].first_result_url};
+            callback(object);
         }
         else {
             request({
@@ -49,14 +48,10 @@ var getFirstResultGoogleAPI = function(yourQuery, callback){
                     if(err) throw err;
                 });
                 connection.end();
-                callback(firstResultUrl);
+                callback(data.items[0]);
             });
         }
     });
-
 };
 
-getFirstResultGoogleAPI(myQuery, function(result){
-    console.log(result);
-});
-
+// Your query in Google

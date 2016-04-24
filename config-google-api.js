@@ -11,6 +11,7 @@ module.exports = {
     // use the email address of the service account, as seen in the API console
     email: 'test-884@myprojecttest-1286.iam.gserviceaccount.com',
     // use the PEM file we generated from the downloaded key
+    //comand in terminal: openssl pkcs12 -in downloaded-key-file.p12 -out your-key-file.pem -nodes
     keyFile: 'good-key-file.pem',
     // specify the scopes you wish to access - each application has different scopes
     scopes: ['https://www.googleapis.com/auth/cse']
