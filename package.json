@@ -1,6 +1,6 @@
 {
-  "name": "nodemysql",
-  "version": "1.0.0",
+  "name": "first-result-google-api",
+  "version": "1.0.1",
   "description": "first result from google api",
   "main": "first-result-google-api.js",
   "devDependencies": {},

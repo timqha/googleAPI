@@ -1,10 +1,17 @@
 #SQL CREATE TABLE
+
 CREATE TABLE `nodemysql`.`res_google_api` (
+
     `id` INT NOT NULL AUTO_INCREMENT,
+
     `query` VARCHAR(255) NOT NULL,
+
     `first_result_url` VARCHAR(255) NOT NULL,
+
     `timestamp` TIMESTAMP NOT NULL,
+
     PRIMARY KEY (`id`));
+
 
 
 ## for reference
