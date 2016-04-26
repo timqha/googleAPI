@@ -1,41 +1,35 @@
 #SQL CREATE TABLE
 
-CREATE TABLE `nodemysql`.`res_google_api` (
+## Installation:
 
-    `id` INT NOT NULL AUTO_INCREMENT,
+### Create MySQL Query
 
-    `query` VARCHAR(255) NOT NULL,
+    CREATE TABLE `res_google_api` (
+        `id` INT NOT NULL AUTO_INCREMENT,
+        `query` VARCHAR(255) NOT NULL,
+        `first_result_url` VARCHAR(255) NOT NULL,
+        `timestamp` TIMESTAMP NOT NULL,
+        PRIMARY KEY (`id`));
 
-    `first_result_url` VARCHAR(255) NOT NULL,
+## Install the module:
 
-    `timestamp` TIMESTAMP NOT NULL,
+    npm i https://github.com/AminaG/google-first-result/edit/master/readme.md
 
-    PRIMARY KEY (`id`));
+## Example of use:
 
-
-
-## for reference
-
-    //Number of search results to return.
-    //Valid values are integers between 1 and 10, inclusive
-
-    #private variable
-
-    numberResponses: default 1,
-
-    // specify the scopes you wish to access - each application has different scopes
-    // for Google Custom Search Engine
-    scopes: ['https://www.googleapis.com/auth/cse']
-
-    #public variable
-
-    // The custom search engine ID to use for this request.
-    // You might generate: Custom Search Engine -> Edit Search Engine -> Basics ->
-    // Sites to Search -> select: Search the entire web but emphasize included sites.
+    var firstResult=require('google-first-result');
+    
+    firstResult({
         cx: '009638576761768992222:4d4fyfcnwwa',
-
-    // use the email address of the service account, as seen in the API console
-    email: 'test@myprojecttest.gserviceaccount.com',
-    // use the PEM file we generated from the downloaded key
-    //comand in terminal: openssl pkcs12 -in downloaded-key-file.p12 -out your-key-file.pem -nodes
-    keyFile: 'your-key-file.pem',
+            // The custom search engine ID to use for this request.
+            // You might generate: Custom Search Engine -> Edit Search Engine -> Basics ->
+            // Sites to Search -> select: Search the entire web but emphasize included sites.
+        email: 'test@myprojecttest.gserviceaccount.com',    
+            // use the email address of the service account, as seen in the API console
+        keyFile: 'your-key-file.pem',
+            // use the PEM file we generated from the downloaded key
+            //comand in terminal: openssl pkcs12 -in downloaded-key-file.p12 -out your-key-file.pem -nodes
+    },function(err,url){
+        console.log(url)
+    })
+    
